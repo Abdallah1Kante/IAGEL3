@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reglement index{% endblock %}
+
+{% block body %}
+    <h1>Reglement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>DateReglement</th>
+                <th>Montant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reglement in reglements %}
+            <tr>
+                <td>{{ reglement.id }}</td>
+                <td>{{ reglement.numero }}</td>
+                <td>{{ reglement.dateReglement ? reglement.dateReglement|date('Y-m-d') : '' }}</td>
+                <td>{{ reglement.montant }}</td>
+                <td>
+                    <a href="{{ path('app_reglement_show', {'id': reglement.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_reglement_edit', {'id': reglement.id}) }}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Aucun Enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_reglement_new') }}">Ajouter un Nouveau Reglement</a>
+{% endblock %}

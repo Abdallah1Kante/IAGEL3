@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TypeOffre index{% endblock %}
+
+{% block body %}
+    <h1>TypeOffre index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for type_offre in type_offres %}
+            <tr>
+                <td>{{ type_offre.id }}</td>
+                <td>{{ type_offre.nom }}</td>
+                <td>
+                    <a href="{{ path('app_type_offre_show', {'id': type_offre.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_type_offre_edit', {'id': type_offre.id}) }}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun Enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_type_offre_new') }}">Ajouter un Type d'Offre</a>
+{% endblock %}

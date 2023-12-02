@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture index{% endblock %}
+
+{% block body %}
+    <h1>Voiture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Modele</th>
+                <th>Marque</th>
+                <th>Prix</th>
+                <th>Description</th>
+                <th>Disponibilite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voiture in voitures %}
+            <tr>
+                <td>{{ voiture.id }}</td>
+                <td>{{ voiture.modele }}</td>
+                <td>{{ voiture.marque }}</td>
+                <td>{{ voiture.prix }}</td>
+                <td>{{ voiture.description }}</td>
+                <td>{{ voiture.disponibilite ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_voiture_show', {'id': voiture.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_voiture_edit', {'id': voiture.id}) }}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun Enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_voiture_new') }}">Ajouter une Nouvelle Voiture</a>
+{% endblock %}

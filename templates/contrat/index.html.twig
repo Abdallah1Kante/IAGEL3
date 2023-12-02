@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrat index{% endblock %}
+
+{% block body %}
+    <h1>Contrat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Date Contrat</th>
+                <th>Montant</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>Type Contrat</th>
+                <th>EtatReglement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <td>{{ contrat.id }}</td>
+                <td>{{ contrat.numero }}</td>
+                <td>{{ contrat.dateContrat ? contrat.dateContrat|date('d-m-Y') : '' }}</td>
+                <td>{{ contrat.montant }}</td>
+                <td>{{ contrat.dateDebut ? contrat.dateDebut|date('d-m-Y') : '' }}</td>
+                <td>{{ contrat.dateFin ? contrat.dateFin|date('d-m-Y') : '' }}</td>
+                <td>{{ contrat.typeOffre }}</td>
+                <td>{{ contrat.etatReglement ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_contrat_show', {'id': contrat.id}) }}" class="btn btn-primary">Voir</a>
+                    <a href="{{ path('app_contrat_edit', {'id': contrat.id}) }}" class="btn btn-warning">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun Enregistrement</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_contrat_new') }}">Ajouter un nouveau Contrat</a>
+{% endblock %}

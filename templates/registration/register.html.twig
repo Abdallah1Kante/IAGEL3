@@ -1,0 +1,30 @@
+{% extends 'security/login.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="row col-md-12" style="margin-top: -100px;">
+        <h1 style="margin: 0 40% 0 40%;">Register</h1>
+    </div>
+    <div class="row col-md-12 mt-5" style="margin: 0 10% 0 10%;">
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        <div style="width: 300%;">
+            {{ form_row(registrationForm.email) }}
+        
+        {{ form_row(registrationForm.nom) }}
+        {{ form_row(registrationForm.prenom) }}
+        {{ form_row(registrationForm.adresse) }}
+        {{ form_row(registrationForm.telephone) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+        {{ form_row(registrationForm.agreeTerms) }}
+
+        <button type="submit" class="btn btn-success">Register</button>
+    {{ form_end(registrationForm) }}
+    </div>
+    </div>
+{% endblock %}
+
